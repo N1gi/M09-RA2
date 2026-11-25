@@ -5,16 +5,21 @@ public class Coet {
     public static void main(String[] args) {
         for (int i = 0; i < motors.length; i++) {
             motors[i] = new Motor();
-        } 
-        arranca(motors);
+        }
         Scanner sc = new Scanner(System.in);
-        int potencia = sc.nextInt();
-        passaAPotencia(potencia);
-        for (Motor motor : motors) {
-                if (motor.getPotencia() == 0) {
-                    break;
-                }
+        boolean aturat = true;
+        int potencia = -1;
+        while (potencia != 0) {
+            potencia = sc.nextInt();
+            passaAPotencia(potencia);
+            if (potencia == 0) {
+                return;
             }
+            if (aturat) {
+                arranca(motors);
+                aturat = false;
+            }
+        }
     }
 
     public static void arranca(Motor[] motors) {
@@ -24,7 +29,7 @@ public class Coet {
     }
     
     public static void passaAPotencia(int potencia) {
-        System.out.println("Passant a potencia " + potencia);
+        System.out.println("Passant a potència " + potencia);
         for (Motor motor : motors) {
             motor.setPotencia(potencia);
         }
